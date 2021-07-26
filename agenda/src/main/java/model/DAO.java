@@ -12,8 +12,8 @@ import java.util.ArrayList;
  */
 public class DAO {
 	
-	/**  MÛdulo de Conex„o *. */
-	// Par‚metro de conex„o
+	/**  M√≥dulo de Conex√£o *. */
+	// Par√¢metro de conex√£o
 	private String driver = "com.mysql.cj.jdbc.Driver";
 	
 	/** The url. */
@@ -23,14 +23,14 @@ public class DAO {
 	private String user = "root";
 	
 	/** The password. */
-	private String password = "@Jos2512";
+	private String password = "";
 
 	/**
 	 * Conectar.
 	 *
 	 * @return the connection
 	 */
-	// MÈtodo de conex„o
+	// M√©todo de conex√£o
 	private Connection conectar() {
 		Connection con = null;
 		try {
@@ -51,17 +51,17 @@ public class DAO {
 	public void inserirContato(JavaBeans contato) {
 		String create = "insert into contatos (nome,fone,email) values (?,?,?)";
 		try {
-			// Abrir a conex„o com o banco
+			// Abrir a conex√£o com o banco
 			Connection con = conectar();
-			// Preparar a query para execuÁ„o no banco de dados
+			// Preparar a query para execu√ß√£o no banco de dados
 			PreparedStatement pst = con.prepareStatement(create);
-			// Substituir os par‚metros (?) pelo conte˙do das vari·veis JavaBeans
+			// Substituir os par√¢metros (?) pelo conte√∫do das vari√°veis JavaBeans
 			pst.setString(1, contato.getNome());
 			pst.setString(2, contato.getFone());
 			pst.setString(3, contato.getEmail());
 			// Executar a query
 			pst.executeUpdate();
-			// Encerrar conex„o com o banco
+			// Encerrar conex√£o com o banco
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -81,9 +81,9 @@ public class DAO {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read);
 			ResultSet rs = pst.executeQuery();
-			// o laÁo abaixo ser· executadi enquanto houver contatos
+			// o la√ßo abaixo ser√° executadi enquanto houver contatos
 			while (rs.next()) {
-				// variavÈis de apoio que recebem os dados do banco
+				// variav√©is de apoio que recebem os dados do banco
 				String idcon = rs.getString(1);
 				String nome = rs.getString(2);
 				String fone = rs.getString(3);
@@ -113,7 +113,7 @@ public class DAO {
 			pst.setString(1, contato.getIdcon());
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
-				// setar as variavÈis JavaBeans
+				// setar as variav√©is JavaBeans
 				contato.setIdcon(rs.getString(1));
 				contato.setNome(rs.getString(2));
 				contato.setFone(rs.getString(3));
